@@ -5,9 +5,9 @@ import java.awt.*;
 
 
 /**
- * Sabra Bot
+ * Sabra Ronins Bot
  */
-public class SabraRonins extends BravoBot
+public class SabraRonins extends CharlieBot
 {
 
 	boolean peek; // Don't turn if there's a robot there
@@ -47,14 +47,14 @@ public class SabraRonins extends BravoBot
 	/**
 	 * onScannedRobot: What to do when you see another robot
 	 */
-	public void onScannedRobot(ScannedRobotEvent e) {	
+	public void onRobotDetected(ScannedRobotEvent e) {	
 			double distance = e.getDistance(); //get the distance of the scanned robot
 		    if(distance > 800) //this conditions adjust the fire force according the distance of the scanned robot.
-		        fire(3);
+		        fire(5);
 		    else if(distance > 600 && distance <= 800)
-		        fire(2);
+		        fire(4);
 		    else if(distance > 400 && distance <= 600)
-		        fire(2);
+		        fire(3);
 		    else if(distance > 200 && distance <= 400)
 		        fire(2);
 		    else if(distance < 200)
@@ -67,22 +67,21 @@ public class SabraRonins extends BravoBot
 				scan();
 			}
 	}
+	
 
 	/**
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
-	/**	double energy = getEnergy();
+		//double energy = getEnergy();
 			    double bearing = e.getBearing(); //Get the direction which is arrived the bullet.
-			    if(energy < 100){ // if the energy is low, the robot go away from the enemy
-			        turnRight(-bearing); //This isn't accurate but release your robot.
-			        ahead(100); //The robot goes away from the enemy.
+			   // if(energy < 100){ // if the energy is low, the robot go away from the enemy
+			       turnRight(-bearing); //This isn't accurate but release your robot.
+			       ahead(100); //The robot goes away from the enemy.
 
-			    }
-			    else
-			        turnRight(360); // scan
-					**/
-					
+			    //}
+			   // else
+			       // turnRight(360); // scan		
 	}
 	
 	/**
@@ -117,9 +116,9 @@ public class SabraRonins extends BravoBot
 			} else if (e.getEnergy() > .4) {
 				fire(.1);
 			}
-			//if (e.isMyFault()) {
-			//	turnRight(10);
-			//}
+			if (e.isMyFault()) {
+			  turnRight(10);
+			}
 	}
    
 
