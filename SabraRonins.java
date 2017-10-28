@@ -1,4 +1,3 @@
-package cis;
 import robocode.*;
 //import java.awt.Color;
 
